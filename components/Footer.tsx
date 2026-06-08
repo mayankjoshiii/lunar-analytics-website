@@ -27,7 +27,7 @@ export function Footer() {
             ))}
           </div>
           <div className="flex items-center gap-3">
-            <a href="https://linkedin.com/in/mayankjoshi" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center hover:border-[#F5C842]/40 hover:text-[#F5C842] transition">
+            <a href="https://linkedin.com/company/lunar-analytics-uk/" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center hover:border-[#F5C842]/40 hover:text-[#F5C842] transition">
               <Linkedin className="w-4 h-4" />
             </a>
             <a href="https://github.com/mayankjoshiii" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center hover:border-[#F5C842]/40 hover:text-[#F5C842] transition">

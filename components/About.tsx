@@ -103,7 +103,7 @@ export function About() {
             </blockquote>
 
             <a
-              href="https://linkedin.com/in/mayankjoshi"
+              href="https://linkedin.com/company/lunar-analytics-uk/"
               target="_blank"
               rel="noreferrer"
               className="mt-8 btn-gold-outline w-full justify-center hover:bg-[#F5C842]/10"
