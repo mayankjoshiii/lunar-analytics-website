@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 13%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 13%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 45 91% 61%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 45 91% 61%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 22%;
+    --input: 217 33% 17%;
+    --ring: 45 91% 61%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .font-syne {
+    font-family: var(--font-syne), sans-serif;
+  }
+  .font-inter {
+    font-family: var(--font-inter), sans-serif;
+  }
+  .text-gold {
+    color: #F5C842;
+  }
+  .bg-gold {
+    background-color: #F5C842;
+  }
+  .bg-navy {
+    background-color: #0B1120;
+  }
+  .bg-navy-2 {
+    background-color: #0F1729;
+  }
+  .border-gold {
+    border-color: #F5C842;
+  }
+  .glow-gold {
+    box-shadow: 0 0 30px rgba(245, 200, 66, 0.3), 0 0 60px rgba(245, 200, 66, 0.1);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1120;
+}
+::-webkit-scrollbar-thumb {
+  background: #F5C842;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4A820;
+}
+
+/* Selection */
+::selection {
+  background: rgba(245, 200, 66, 0.3);
+  color: #F8FAFC;
+}
+
+/* Rotating conic-gradient border for featured card */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes spin-border {
+  to { --angle: 360deg; }
+}
+.spin-border {
+  animation: spin-border 3s linear infinite;
+  background: conic-gradient(from var(--angle), #F5C842, #D4A820, #F5C842, transparent, transparent);
+}
+
+/* Particle canvas */
+#particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
