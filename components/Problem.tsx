@@ -32,7 +32,7 @@ export default function Problem() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section id="problem" className="py-24 bg-[#0F1729]" ref={ref}>
+    <section id="problem" className="py-24" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left: Pain Points */}

@@ -57,7 +57,7 @@ export default function CaseStudy() {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="case-study" className="py-24 px-[5%] bg-[#0B1120]" ref={ref}>
+    <section id="case-study" className="py-24 px-[5%]" ref={ref}>
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}

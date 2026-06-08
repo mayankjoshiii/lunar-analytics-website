@@ -87,7 +87,7 @@ export default function Projects() {
   const isInView = useInView(ref, { once: true, amount: 0.05 })
 
   return (
-    <section id="projects" className="py-24 bg-[#0F1729]" ref={ref}>
+    <section id="projects" className="py-24" ref={ref}>
       {/* Dot grid background */}
       <div
         className="absolute inset-0 pointer-events-none opacity-30"

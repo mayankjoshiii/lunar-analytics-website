@@ -63,7 +63,7 @@ export default function Contact() {
     } text-[#F8FAFC] placeholder-[#94A3B8]/50 font-inter text-sm focus:outline-none focus:border-[#F5C842]/60 focus:ring-1 focus:ring-[#F5C842]/20 transition-all duration-200`
 
   return (
-    <section id="contact" className="py-24 bg-[#0F1729]" ref={ref}>
+    <section id="contact" className="py-24" ref={ref}>
       <div className="max-w-2xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
