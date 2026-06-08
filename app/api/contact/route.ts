@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+import nodemailer from 'nodemailer'
 
-// Submissions are delivered via FormSubmit (no API key required) to the
-// business inbox. The address stays server-side so it isn't exposed to bots.
-const TARGET_EMAIL = 'lunaranalytics2026@gmail.com'
+// Runs on the Node.js runtime so Nodemailer (net/tls) works.
+export const runtime = 'nodejs'
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,49 +16,59 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const res = await fetch(`https://formsubmit.co/ajax/${TARGET_EMAIL}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        Name: name,
-        Email: email,
-        Company: company || '—',
-        'Service Interest': service || '—',
-        Message: message || '—',
-        _subject: `New Lunar Analytics enquiry — ${name}${company ? ` (${company})` : ''}`,
-        _template: 'table',
-        _captcha: 'false',
-      }),
-    })
+    const user = process.env.GMAIL_USER
+    const pass = process.env.GMAIL_APP_PASSWORD
 
-    const data = await res.json().catch(() => ({}))
-
-    if (!res.ok) {
-      console.error('FormSubmit error:', res.status, data)
+    if (!user || !pass) {
+      console.error('Contact form: missing GMAIL_USER / GMAIL_APP_PASSWORD env vars')
       return NextResponse.json(
         {
           success: false,
           message:
-            'We could not send your enquiry right now. Please email hello@lunaranalytics.co.uk directly.',
+            'Email is not configured yet. Please email hello@lunaranalytics.co.uk directly.',
         },
-        { status: 502 }
+        { status: 500 }
       )
     }
 
-    return NextResponse.json({
-      success: true,
-      message: "Thanks — we'll be in touch.",
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user, pass },
     })
+
+    const to = process.env.CONTACT_TO || user
+
+    await transporter.sendMail({
+      from: `"Lunar Analytics Website" <${user}>`,
+      to,
+      replyTo: email,
+      subject: `New enquiry — ${name}${company ? ` (${company})` : ''}`,
+      text:
+        `New Lunar Analytics enquiry\n\n` +
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Company: ${company || '—'}\n` +
+        `Service: ${service || '—'}\n\n` +
+        `Message:\n${message || '—'}\n`,
+      html:
+        `<h2 style="font-family:sans-serif">New Lunar Analytics enquiry</h2>` +
+        `<table style="font-family:sans-serif;border-collapse:collapse">` +
+        `<tr><td style="padding:4px 12px 4px 0"><strong>Name</strong></td><td>${name}</td></tr>` +
+        `<tr><td style="padding:4px 12px 4px 0"><strong>Email</strong></td><td>${email}</td></tr>` +
+        `<tr><td style="padding:4px 12px 4px 0"><strong>Company</strong></td><td>${company || '—'}</td></tr>` +
+        `<tr><td style="padding:4px 12px 4px 0"><strong>Service</strong></td><td>${service || '—'}</td></tr>` +
+        `</table>` +
+        `<p style="font-family:sans-serif"><strong>Message</strong><br>${(message || '—').replace(/\n/g, '<br>')}</p>`,
+    })
+
+    return NextResponse.json({ success: true, message: "Thanks — we'll be in touch." })
   } catch (error) {
     console.error('Contact form error:', error)
     return NextResponse.json(
       {
         success: false,
         message:
-          'Something went wrong. Please email hello@lunaranalytics.co.uk directly.',
+          'Could not send your enquiry right now. Please email hello@lunaranalytics.co.uk directly.',
       },
       { status: 500 }
     )
