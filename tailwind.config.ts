@@ -18,43 +18,48 @@ const config: Config = {
     },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        surface: 'var(--surface)',
+        gold: 'var(--gold)',
+        'gold-soft': 'var(--gold-soft)',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: 'var(--primary)',
+          foreground: 'var(--primary-foreground)',
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: 'var(--secondary)',
+          foreground: 'var(--secondary-foreground)',
         },
         destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+          DEFAULT: 'var(--destructive)',
+          foreground: 'var(--destructive-foreground)',
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: 'var(--accent)',
+          foreground: 'var(--accent-foreground)',
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)',
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
         },
       },
       fontFamily: {
         syne: ['var(--font-syne)', 'sans-serif'],
         inter: ['var(--font-inter)', 'sans-serif'],
+        display: ['var(--font-syne)', 'sans-serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -62,23 +67,30 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
+        aurora: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '33%': { transform: 'translate(40px, -30px) scale(1.1)' },
+          '66%': { transform: 'translate(-30px, 40px) scale(0.95)' },
         },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+        float: {
+          '0%, 100%': { transform: 'translateY(0) translateX(0)', opacity: '0.4' },
+          '50%': { transform: 'translateY(-40px) translateX(20px)', opacity: '0.9' },
         },
-        'pulse-glow': {
-          '0%, 100%': { opacity: '0.4' },
-          '50%': { opacity: '0.8' },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        pulseDot: {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(34, 197, 94, 0.6)' },
+          '50%': { boxShadow: '0 0 0 8px rgba(34, 197, 94, 0)' },
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+        aurora: 'aurora 18s ease-in-out infinite',
+        float: 'float 8s ease-in-out infinite',
+        'spin-slow': 'spin 6s linear infinite',
+        shimmer: 'shimmer 2.5s linear infinite',
+        'pulse-dot': 'pulseDot 2s ease-in-out infinite',
       },
     },
   },

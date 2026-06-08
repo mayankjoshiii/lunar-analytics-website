@@ -1,26 +1,27 @@
-import Nav from '@/components/Nav'
-import Hero from '@/components/Hero'
-import Problem from '@/components/Problem'
-import Services from '@/components/Services'
-import Process from '@/components/Process'
-import About from '@/components/About'
-import Results from '@/components/Results'
-import CaseStudy from '@/components/CaseStudy'
-import Projects from '@/components/Projects'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
+import { Nav, ScrollProgress } from '@/components/Nav'
+import { SiteBackground } from '@/components/SiteBackground'
+import { Hero } from '@/components/Hero'
+import { Problem } from '@/components/Problem'
+import { Services } from '@/components/Services'
+import { Process } from '@/components/Process'
+import { About } from '@/components/About'
+import { CaseStudy } from '@/components/CaseStudy'
+import { Projects } from '@/components/Projects'
+import { Contact } from '@/components/Contact'
+import { Footer } from '@/components/Footer'
 
 export default function Home() {
   return (
-    <main>
+    <main className="relative min-h-screen text-foreground">
+      <SiteBackground />
+      <ScrollProgress />
       <Nav />
       <Hero />
       <Problem />
       <Services />
       <Process />
-      <About />
-      <Results />
       <CaseStudy />
+      <About />
       <Projects />
       <Contact />
       <Footer />

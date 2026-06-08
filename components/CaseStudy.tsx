@@ -1,195 +1,89 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { ArrowRight } from "lucide-react";
+import { Reveal, SectionLabel, Stagger, Item, itemVariants } from "./Reveal";
 
 const metrics = [
-  { value: '2,495', label: 'UK Customers Surveyed', sub: 'aged 18–64' },
-  { value: '25%', label: 'Churn Rate Identified', sub: 'in 18–25 segment' },
-  { value: '15%', label: 'Churn Reduction Potential', sub: 'via ML models (McKinsey)' },
-  { value: '85%+', label: 'Retention in Stable Segments', sub: 'ages 35–50' },
-]
+  { v: "2,495", l: "Customers surveyed" },
+  { v: "25%", l: "Churn identified (18–25)" },
+  { v: "15%", l: "Churn reduction potential" },
+  { v: "85%+", l: "Retention in stable segments" },
+];
 
-const methods = [
-  {
-    icon: '📊',
-    title: 'Multiple Regression Analysis',
-    desc: 'Identified loyalty drivers across brand KPIs — popularity and usage predict retention; short-term buzz has near-zero effect.',
-  },
-  {
-    icon: '🔵',
-    title: 'Cluster Segmentation',
-    desc: 'Power BI segmentation of 2,495 respondents into behavioural groups — exposing the high-risk 18–25 cohort with 25% churn.',
-  },
-  {
-    icon: '💬',
-    title: 'NLP Sentiment Analysis',
-    desc: 'Natural language processing of open-text reviews. Negative sentiment identified as the single strongest predictor of churn.',
-  },
-  {
-    icon: '🗺️',
-    title: 'Geospatial Analysis',
-    desc: 'Customer satisfaction heatmaps by region revealed medium-density cities outperform megacities — highest expansion potential.',
-  },
-  {
-    icon: '📈',
-    title: 'Tableau & Power BI Dashboards',
-    desc: 'Interactive dashboards visualising retention KPIs, churn drivers, media engagement, and demographic loyalty profiles.',
-  },
-  {
-    icon: '⚙️',
-    title: 'Analytics Maturity Benchmarking',
-    desc: 'Maturity radar chart benchmarking Enterprise Mobility against industry leaders — gap analysis leading to ML implementation roadmap.',
-  },
-]
+const techniques = ["Logistic regression modelling", "K-Means customer clustering", "NLP sentiment analysis", "Geospatial heatmaps", "Power BI & Tableau dashboards", "Maturity benchmarking framework"];
 
 const findings = [
-  'Repeated usage and brand popularity are the strongest loyalty predictors — short-term buzz has limited or negative effect',
-  'Negative online sentiment is the single most powerful predictor of churn, requiring proactive reputation management',
-  'The 18–25 demographic shows 25% churn — the most acute strategic vulnerability, requiring gamified digital loyalty solutions',
-  'Enterprise Mobility\'s analytics maturity lags industry standards, with no predictive tools for early churn intervention',
-  'A 5% improvement in retention can raise profits by 25–95%, making targeted intervention highly ROI-positive',
-  'Medium-density urban centres offer the highest expansion potential for EV and subscription mobility models',
-]
+  "Younger renters (18–25) churned at 3× the rate of any other segment",
+  "Price sensitivity peaked in urban metro corridors",
+  "Loyalty programme members showed 85%+ retention",
+  "Sentiment NLP flagged 'wait time' as the #1 dissatisfaction driver",
+  "Targeted retention plays could lift LTV by an estimated £4.2M annually",
+];
 
-export default function CaseStudy() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-80px' })
-
+export function CaseStudy() {
   return (
-    <section id="case-study" className="py-24 px-[5%]" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
-        >
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#F5C842] mb-3">
-            Real Work · MSc Capstone Project
-          </p>
-          <h2 className="font-syne text-3xl md:text-4xl font-bold text-white leading-tight mb-4 max-w-3xl">
-            Enterprise Mobility: Data-Driven Customer Retention Strategy
-          </h2>
-          <p className="text-[#94A3B8] max-w-2xl text-[1.05rem] leading-relaxed">
-            A Distinction-grade MSc Business Analytics capstone project at Swansea University,
-            delivered to a real client brief from Enterprise Mobility (Enterprise Rent-A-Car ·
-            National Car Rental). Mixed-methods analysis of 2,495 UK customers to diagnose
-            churn drivers and build a predictive retention roadmap.
-          </p>
-        </motion.div>
-
-        {/* Metrics row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-          {metrics.map((m, i) => (
-            <motion.div
-              key={m.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * i }}
-              className="bg-[#111827] border border-white/5 rounded-xl p-5 text-center"
-            >
-              <div className="font-syne text-3xl font-bold text-[#F5C842] mb-1">{m.value}</div>
-              <div className="text-white text-sm font-semibold mb-0.5">{m.label}</div>
-              <div className="text-[#94A3B8] text-xs">{m.sub}</div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Two-column layout */}
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-
-          {/* Left: methods */}
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h3 className="font-syne text-xl font-bold text-white mb-6">
-              Analytical Techniques Applied
-            </h3>
-            <div className="flex flex-col gap-4">
-              {methods.map((m) => (
-                <div key={m.title} className="flex gap-4 items-start">
-                  <span className="text-2xl mt-0.5 flex-shrink-0">{m.icon}</span>
-                  <div>
-                    <div className="text-white font-semibold text-sm mb-1">{m.title}</div>
-                    <div className="text-[#94A3B8] text-sm leading-relaxed">{m.desc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right: findings */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <h3 className="font-syne text-xl font-bold text-white mb-6">
-              Key Findings
-            </h3>
-            <ul className="flex flex-col gap-4">
-              {findings.map((f, i) => (
-                <li key={i} className="flex gap-3 items-start text-sm text-[#94A3B8] leading-relaxed">
-                  <span className="text-[#F5C842] mt-1 flex-shrink-0">✦</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-
-            {/* Impact box */}
-            <div className="mt-8 bg-[#1C2A3A] border border-[#F5C842]/20 rounded-xl p-5">
-              <div className="text-[#F5C842] font-semibold text-sm mb-2">Strategic Impact</div>
-              <p className="text-white text-sm leading-relaxed">
-                Delivered a six-priority action plan — loyalty redesign, youth engagement,
-                transparent pricing, peak-demand service quality, ML churn prediction, and
-                EV urban expansion — with a phased 24-month implementation roadmap and
-                KPI monitoring framework using Power BI and Tableau dashboards.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {['Python', 'Regression Modelling', 'NLP', 'Tableau', 'Power BI', 'Cluster Analysis', 'GDPR Compliance'].map(tag => (
-                  <span key={tag} className="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-[#94A3B8]">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Bottom: This work powers our SaaS */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-r from-[#1C2A3A] to-[#111827] border border-[#F5C842]/20 rounded-2xl p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
-        >
-          <div>
-            <div className="text-[#F5C842] font-semibold text-sm mb-2">
-              🌙 This project powers our Churn Shield product
-            </div>
-            <h4 className="font-syne text-xl font-bold text-white mb-2">
-              From MSc research to production SaaS
-            </h4>
-            <p className="text-[#94A3B8] text-sm max-w-xl leading-relaxed">
-              The churn prediction models and NLP sentiment analysis built for Enterprise Mobility
-              form the analytical foundation of Churn Shield — our upcoming SaaS product for UK
-              subscription businesses. Rigorous academic research, production-ready product.
+    <section id="case-study" className="py-32 section-alt">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center max-w-3xl mx-auto">
+          <Reveal><SectionLabel>Real Work · MSc Capstone</SectionLabel></Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="mt-6 text-4xl md:text-5xl font-bold leading-tight">
+              Enterprise Mobility: <span className="gold-text">Data-Driven Customer Retention Strategy</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-5 text-muted-foreground">
+              Distinction-grade MSc capstone project completed for Enterprise Mobility (Enterprise Rent-A-Car), modelling
+              churn drivers across 2,495 surveyed customers across the UK.
             </p>
-          </div>
-          <a
-            href="#contact"
-            className="flex-shrink-0 bg-[#F5C842] text-[#0B1120] font-bold px-6 py-3 rounded-xl text-sm hover:opacity-90 transition-opacity whitespace-nowrap"
-          >
-            Get Early Access →
-          </a>
-        </motion.div>
+          </Reveal>
+        </div>
 
+        <Stagger className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
+          {metrics.map((m) => (
+            <Item key={m.l} variants={itemVariants} className="glass-card p-6 text-center hover:gold-glow transition">
+              <div className="font-display font-bold text-3xl gold-text">{m.v}</div>
+              <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{m.l}</div>
+            </Item>
+          ))}
+        </Stagger>
+
+        <div className="mt-12 grid md:grid-cols-2 gap-6">
+          <Reveal>
+            <div className="glass-card p-8 h-full">
+              <h3 className="font-display font-bold text-xl">Analytical Techniques</h3>
+              <ul className="mt-5 space-y-3 text-sm">
+                {techniques.map((t) => (
+                  <li key={t} className="flex gap-2"><span className="gold-text">✦</span>{t}</li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="glass-card p-8 h-full">
+              <h3 className="font-display font-bold text-xl">Key Findings</h3>
+              <ul className="mt-5 space-y-3 text-sm">
+                {findings.map((f) => (
+                  <li key={f} className="flex gap-2"><span className="gold-text">✦</span>{f}</li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal delay={0.2}>
+          <div className="mt-10 rounded-2xl p-8 md:p-10 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(245,200,66,0.12), rgba(79,70,229,0.12))", border: "1px solid rgba(245,200,66,0.25)" }}>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <p className="font-display font-semibold text-xl md:text-2xl max-w-2xl">
+                🌙 This project powers our <span className="gold-text">Churn Shield</span> product — from MSc research to production SaaS.
+              </p>
+              <a href="#contact" className="btn-gold shrink-0">
+                Get Early Access <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
-  )
+  );
 }
