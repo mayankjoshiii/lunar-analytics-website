@@ -7,10 +7,30 @@ import { Reveal, SectionLabel } from "./Reveal";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setError(null);
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json().catch(() => ({}));
+      if (!res.ok || !result.success) {
+        throw new Error(result.message || "Something went wrong.");
+      }
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please email hello@lunaranalytics.co.uk.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -58,7 +78,7 @@ export function Contact() {
                   <Field label="Company Name" name="company" required />
                   <div>
                     <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-2">Service Interest</label>
-                    <select required className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#F5C842]/50">
+                    <select name="service" required className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#F5C842]/50">
                       <option value="">Select a plan…</option>
                       <option>Starter — £1,500/mo</option>
                       <option>Growth — £2,500/mo (Most Popular)</option>
@@ -68,10 +88,13 @@ export function Contact() {
                   </div>
                   <div>
                     <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-2">Message</label>
-                    <textarea rows={4} className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#F5C842]/50" placeholder="Tell us about your data and what you'd like to figure out…" />
+                    <textarea name="message" rows={4} className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#F5C842]/50" placeholder="Tell us about your data and what you'd like to figure out…" />
                   </div>
-                  <button type="submit" className="btn-gold w-full justify-center text-base py-3.5">
-                    Book Free Discovery Call <Send className="w-4 h-4" />
+                  {error && (
+                    <p className="text-sm text-red-400 text-center">{error}</p>
+                  )}
+                  <button type="submit" disabled={loading} className="btn-gold w-full justify-center text-base py-3.5 disabled:opacity-60 disabled:cursor-not-allowed">
+                    {loading ? "Sending…" : "Book Free Discovery Call"} <Send className="w-4 h-4" />
                   </button>
                   <p className="text-xs text-center text-muted-foreground">
                     Or email us directly — <a href="mailto:hello@lunaranalytics.co.uk" className="gold-text">hello@lunaranalytics.co.uk</a>
