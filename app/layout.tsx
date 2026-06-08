@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Syne, Inter } from 'next/font/google'
 import './globals.css'
+import { SiteBackground } from '@/components/SiteBackground'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -40,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${syne.variable} ${inter.variable}`}>
       <body className="font-inter bg-[#0B1120] text-[#F8FAFC] antialiased overflow-x-hidden">
+        <SiteBackground />
         {children}
       </body>
     </html>
