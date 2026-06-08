@@ -14,32 +14,47 @@ const stats = [
   { value: '30-Day', label: 'ROI Window', icon: Zap },
 ]
 
-function AuroraBackground() {
+function Moon() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <motion.div
+      aria-hidden="true"
+      className="absolute pointer-events-none"
+      style={{ top: '6%', right: '5%', zIndex: 2 }}
+      initial={{ opacity: 0, scale: 0.92 }}
+      animate={{ opacity: 1, scale: 1, y: [0, -18, 0] }}
+      transition={{
+        opacity: { duration: 1.4, ease: 'easeOut' },
+        scale: { duration: 1.4, ease: 'easeOut' },
+        y: { duration: 9, repeat: Infinity, ease: 'easeInOut' },
+      }}
+    >
+      {/* Outer glow halo */}
       <motion.div
-        className="absolute w-[600px] h-[500px] rounded-full opacity-[0.07]"
-        style={{ background: '#F5C842', filter: 'blur(100px)', top: '15%', left: '15%' }}
-        animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute rounded-full"
+        style={{
+          inset: '-45%',
+          background:
+            'radial-gradient(circle, rgba(245,200,66,0.40) 0%, rgba(245,200,66,0.10) 42%, transparent 70%)',
+          filter: 'blur(24px)',
+        }}
+        animate={{ opacity: [0.75, 1, 0.75] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
-        className="absolute w-[700px] h-[600px] rounded-full opacity-[0.09]"
-        style={{ background: '#1E3A8A', filter: 'blur(120px)', bottom: 0, right: 0 }}
-        animate={{ x: [0, -60, 0], y: [0, -50, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+      {/* Moon body */}
+      <div
+        className="relative rounded-full w-[clamp(170px,24vw,360px)] h-[clamp(170px,24vw,360px)]"
+        style={{
+          background:
+            'radial-gradient(circle at 34% 30%, #FDE7A6 0%, #F5C842 38%, #E0A92E 68%, #C0871B 100%)',
+          boxShadow:
+            '0 0 90px 24px rgba(245,200,66,0.22), inset -22px -22px 64px rgba(150,100,18,0.45)',
+        }}
       />
-      <motion.div
-        className="absolute w-[500px] h-[400px] rounded-full opacity-[0.06]"
-        style={{ background: '#4F46E5', filter: 'blur(80px)', top: '30%', right: '20%' }}
-        animate={{ x: [0, -40, 0], y: [0, 60, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-      />
-    </div>
+    </motion.div>
   )
 }
 
-function ParticleCanvas() {
+function ConstellationNetwork() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -49,51 +64,101 @@ function ParticleCanvas() {
     if (!ctx) return
 
     let animFrameId: number
-    const particles: { x: number; y: number; size: number; speedX: number; speedY: number; opacity: number }[] = []
+    let particles: { x: number; y: number; vx: number; vy: number; r: number }[] = []
+    const mouse = { x: -9999, y: -9999 }
+    const LINK_DIST = 130
 
-    const resize = () => {
+    const setup = () => {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    for (let i = 0; i < 80; i++) {
-      particles.push({
+      const count = Math.min(120, Math.floor((canvas.width * canvas.height) / 13000))
+      particles = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.5 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.3,
-        opacity: Math.random() * 0.5 + 0.1,
-      })
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() * 1.5 + 0.6,
+      }))
     }
+    setup()
+    window.addEventListener('resize', setup)
+
+    const onMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect()
+      mouse.x = e.clientX - rect.left
+      mouse.y = e.clientY - rect.top
+    }
+    const onLeave = () => {
+      mouse.x = -9999
+      mouse.y = -9999
+    }
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseout', onLeave)
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      particles.forEach((p) => {
-        p.x += p.speedX
-        p.y += p.speedY
-        if (p.x < 0) p.x = canvas.width
-        if (p.x > canvas.width) p.x = 0
-        if (p.y < 0) p.y = canvas.height
-        if (p.y > canvas.height) p.y = 0
+
+      for (const p of particles) {
+        p.x += p.vx
+        p.y += p.vy
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
         ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(245, 200, 66, ${p.opacity})`
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+        ctx.fillStyle = 'rgba(245,200,66,0.7)'
         ctx.fill()
-      })
+      }
+
+      for (let i = 0; i < particles.length; i++) {
+        const a = particles[i]
+        for (let j = i + 1; j < particles.length; j++) {
+          const b = particles[j]
+          const dx = a.x - b.x
+          const dy = a.y - b.y
+          const dist = Math.hypot(dx, dy)
+          if (dist < LINK_DIST) {
+            ctx.beginPath()
+            ctx.moveTo(a.x, a.y)
+            ctx.lineTo(b.x, b.y)
+            ctx.strokeStyle = `rgba(245,200,66,${0.16 * (1 - dist / LINK_DIST)})`
+            ctx.lineWidth = 0.6
+            ctx.stroke()
+          }
+        }
+        const mdx = a.x - mouse.x
+        const mdy = a.y - mouse.y
+        const mdist = Math.hypot(mdx, mdy)
+        const MOUSE_DIST = LINK_DIST * 1.5
+        if (mdist < MOUSE_DIST) {
+          ctx.beginPath()
+          ctx.moveTo(a.x, a.y)
+          ctx.lineTo(mouse.x, mouse.y)
+          ctx.strokeStyle = `rgba(245,200,66,${0.28 * (1 - mdist / MOUSE_DIST)})`
+          ctx.lineWidth = 0.7
+          ctx.stroke()
+        }
+      }
+
       animFrameId = requestAnimationFrame(draw)
     }
     draw()
 
     return () => {
-      window.removeEventListener('resize', resize)
+      window.removeEventListener('resize', setup)
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseout', onLeave)
       cancelAnimationFrame(animFrameId)
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-[5]" aria-hidden="true" />
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 1 }}
+      aria-hidden="true"
+    />
+  )
 }
 
 export default function Hero() {
@@ -113,12 +178,32 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center bg-[#0B1120] overflow-hidden pt-20">
-      {/* Aurora blobs */}
-      <AuroraBackground />
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20"
+      style={{
+        background: 'radial-gradient(120% 120% at 80% 8%, #1C1B4A 0%, #0E1230 38%, #0B1120 70%)',
+      }}
+    >
+      {/* Subtle perspective grid */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 0,
+          backgroundImage:
+            'linear-gradient(rgba(245,200,66,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(245,200,66,0.035) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, #000 25%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, #000 25%, transparent 75%)',
+        }}
+      />
 
-      {/* Particle Canvas */}
-      <ParticleCanvas />
+      {/* Constellation network */}
+      <ConstellationNetwork />
+
+      {/* Glowing moon */}
+      <Moon />
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
