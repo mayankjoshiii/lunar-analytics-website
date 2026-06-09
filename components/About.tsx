@@ -50,12 +50,12 @@ export function About() {
             </div>
           </Reveal>
 
-          <div className="mt-12 relative pl-8">
-            <div className="absolute left-2 top-2 bottom-2 w-px bg-gradient-to-b from-[#F5C842] via-[#F5C842]/40 to-transparent" />
+          <div className="mt-12 relative">
+            <div className="absolute left-[5px] top-1 bottom-1 w-px bg-gradient-to-b from-[#F5C842] via-[#F5C842]/40 to-transparent" />
             {timeline.map((t, i) => (
               <Reveal key={i} delay={0.1 * i}>
-                <div className="relative mb-8 last:mb-0">
-                  <span className={`absolute -left-[26px] top-1.5 w-3 h-3 rounded-full ${t.current ? "bg-green-500 animate-pulse-dot" : "bg-[#F5C842]"}`} />
+                <div className="relative pl-8 pb-8 last:pb-0">
+                  <span className={`absolute left-0 top-[3px] w-[11px] h-[11px] rounded-full ${t.current ? "bg-green-500 animate-pulse-dot" : "bg-[#F5C842]"}`} />
                   <div className="text-xs uppercase tracking-wider text-muted-foreground">{t.year}</div>
                   <div className="font-semibold mt-1">{t.title}</div>
                   <div className="text-sm text-muted-foreground mt-0.5">{t.text}</div>
