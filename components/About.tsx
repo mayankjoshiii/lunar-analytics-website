@@ -7,7 +7,7 @@ const skills = ["Python", "Machine Learning", "SQL", "Power BI", "Churn Predicti
 
 const timeline = [
   { year: "2021 – 2025", title: "Senior Analyst · onsite at Google", text: "Analytics & data operations onsite at Google, Gurugram (via Vaco Binary Semantics)." },
-  { year: "2024 – 2026", title: "MSc Distinction · Swansea University", text: "Business Analytics — distinction-grade capstone (completed Jan 2026)." },
+  { year: "2025 – 2026", title: "MSc Distinction · Swansea University", text: "Business Analytics — distinction-grade capstone (completed Jan 2026)." },
   { year: "2026", title: "Founder · Lunar Analytics", text: "Fractional analytics for UK SMEs.", current: true },
 ];
 
