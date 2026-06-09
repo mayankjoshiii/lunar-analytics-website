@@ -6,14 +6,14 @@ import { Reveal, SectionLabel } from "./Reveal";
 const skills = ["Python", "Machine Learning", "SQL", "Power BI", "Churn Prediction", "A/B Testing", "Financial Analytics", "Google Analytics", "R", "dbt"];
 
 const timeline = [
-  { year: "2019 – 2024", title: "Google LLC", text: "Analytics & data operations across global teams." },
+  { year: "2021 – 2025", title: "Senior Analyst · onsite at Google", text: "Analytics & data operations onsite at Google, Gurugram (via Vaco Binary Semantics)." },
   { year: "2024 – 2025", title: "MSc Distinction · Swansea University", text: "Business Analytics — distinction-grade capstone." },
   { year: "2025 – Present", title: "Founder · Lunar Analytics", text: "Fractional analytics for UK SMEs.", current: true },
 ];
 
 const creds = [
   { icon: GraduationCap, text: "MSc Business Analytics — Distinction" },
-  { icon: Briefcase, text: "4+ years at Google LLC" },
+  { icon: Briefcase, text: "4+ years onsite at Google" },
   { icon: Award, text: "CMI Level 7 — Strategic Management" },
   { icon: Github, text: "5+ live ML / analytics projects" },
 ];
@@ -26,12 +26,12 @@ export function About() {
           <Reveal><SectionLabel>About Lunar</SectionLabel></Reveal>
           <Reveal delay={0.1}>
             <h2 className="mt-6 text-4xl md:text-5xl font-bold leading-tight">
-              Google-trained analytics, <span className="gold-text">built for SMEs.</span>
+              Enterprise-grade analytics, <span className="gold-text">built for SMEs.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Mayank Joshi spent 4+ years inside Google LLC's analytics ecosystem before completing an MSc in
+              Mayank Joshi spent 4+ years as a Senior Analyst working onsite at Google (via Vaco Binary Semantics) before completing an MSc in
               Business Analytics with Distinction at Swansea University. Lunar Analytics brings that
               enterprise rigour to small and medium UK businesses — at a fraction of the cost.
             </p>

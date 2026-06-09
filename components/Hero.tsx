@@ -54,7 +54,7 @@ export function Hero() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="mt-5 text-sm text-muted-foreground"
         >
-          🏢 Ex-Google LLC · 🎓 MSc Distinction · 🏆 CMI Level 7
+          🏢 4+ yrs onsite at Google · 🎓 MSc Distinction · 🏆 CMI Level 7
         </motion.p>
 
         <h1 className="mt-8 font-display font-bold text-5xl md:text-7xl leading-[1.05] max-w-5xl mx-auto">
