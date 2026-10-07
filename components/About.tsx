@@ -3,19 +3,19 @@
 import { Award, Briefcase, GraduationCap, Github, Linkedin } from "lucide-react";
 import { Reveal, SectionLabel } from "./Reveal";
 
-const skills = ["Python", "Machine Learning", "SQL", "Power BI", "Churn Prediction", "A/B Testing", "Financial Analytics", "Google Analytics", "R", "dbt"];
+const skills = ["Python", "Machine Learning", "SQL", "Power BI", "Churn Prediction", "A/B Testing", "Financial Analytics", "Excel & VBA", "Tableau", "Looker Studio"];
 
 const timeline = [
-  { year: "2021 – 2025", title: "Senior Analyst · onsite at Google", text: "Analytics & data operations onsite at Google, Gurugram (via Vaco Binary Semantics)." },
+  { year: "2021 – 2025", title: "Associate Analyst · onsite at Google", text: "Analytics & data operations onsite at Google, Gurugram (via Vaco Binary Semantics)." },
   { year: "2025 – 2026", title: "MSc Distinction · Swansea University", text: "Business Analytics — distinction-grade capstone (completed Jan 2026)." },
   { year: "2026", title: "Founder · Lunar Analytics", text: "Fractional analytics for UK SMEs.", current: true },
 ];
 
 const creds = [
   { icon: GraduationCap, text: "MSc Business Analytics — Distinction" },
-  { icon: Briefcase, text: "4+ years onsite at Google" },
-  { icon: Award, text: "CMI Level 7 — Strategic Management" },
-  { icon: Github, text: "5+ live ML / analytics projects" },
+  { icon: Briefcase, text: "Nearly 4 years onsite at Google" },
+  { icon: Award, text: "CMI Level 7 Certificate, Strategic Management" },
+  { icon: Github, text: "10 live analytics demos on GitHub" },
 ];
 
 export function About() {
@@ -31,7 +31,7 @@ export function About() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Mayank Joshi spent 4+ years as a Senior Analyst working onsite at Google (via Vaco Binary Semantics) before completing an MSc in
+              Mayank Joshi spent nearly four years as an Associate Analyst working onsite at Google (via Vaco Binary Semantics) before completing an MSc in
               Business Analytics with Distinction at Swansea University. Lunar Analytics brings that
               enterprise rigour to small and medium UK businesses — at a fraction of the cost.
             </p>

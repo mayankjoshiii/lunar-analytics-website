@@ -6,8 +6,8 @@ import { ArrowRight, Sparkles } from "lucide-react";
 const headline = ["Your", "business", "has", "data.", "We", "turn", "it", "into"];
 
 const stats = [
-  { v: "4+", l: "Years Experience" },
-  { v: "82%", l: "Churn Accuracy" },
+  { v: "~4", l: "Years Analytics Experience" },
+  { v: "0.85", l: "Churn Model AUC" },
   { v: "£0", l: "Wasted Spend" },
   { v: "30-Day", l: "ROI Window" },
 ];
@@ -54,7 +54,7 @@ export function Hero() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="mt-5 text-sm text-muted-foreground"
         >
-          🏢 4+ yrs onsite at Google · 🎓 MSc Distinction · 🏆 CMI Level 7
+          🏢 ~4 yrs onsite at Google · 🎓 MSc Distinction · 🏆 CMI Level 7 Certificate
         </motion.p>
 
         <h1 className="mt-8 font-display font-bold text-5xl md:text-7xl leading-[1.05] max-w-5xl mx-auto">

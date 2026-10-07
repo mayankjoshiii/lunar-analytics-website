@@ -4,20 +4,20 @@ import { ArrowRight } from "lucide-react";
 import { Reveal, SectionLabel, Stagger, Item, itemVariants } from "./Reveal";
 
 const metrics = [
-  { v: "2,495", l: "Customers surveyed" },
-  { v: "25%", l: "Churn identified (18–25)" },
-  { v: "15%", l: "Churn reduction potential" },
-  { v: "85%+", l: "Retention in stable segments" },
+  { v: "2,495", l: "UK survey respondents" },
+  { v: "0.81", l: "R² on loyalty drivers" },
+  { v: "25%", l: "Churn in 18–25s" },
+  { v: ">85%", l: "Retention, older cohorts" },
 ];
 
-const techniques = ["Logistic regression modelling", "K-Means customer clustering", "NLP sentiment analysis", "Geospatial heatmaps", "Power BI & Tableau dashboards", "Maturity benchmarking framework"];
+const techniques = ["Multiple regression (R² = 0.81)", "Customer cluster analysis", "NLP sentiment analysis", "Geographic heatmaps", "Power BI & Tableau dashboards", "Analytics maturity benchmarking"];
 
 const findings = [
-  "Younger renters (18–25) churned at 3× the rate of any other segment",
-  "Price sensitivity peaked in urban metro corridors",
-  "Loyalty programme members showed 85%+ retention",
-  "Sentiment NLP flagged 'wait time' as the #1 dissatisfaction driver",
-  "Targeted retention plays could lift LTV by an estimated £4.2M annually",
+  "Negative online sentiment predicted churn more strongly than any brand metric",
+  "18–25 year olds churned at 25%, against over 85% retention in older cohorts, driven by price sensitivity and digital expectations",
+  "Medium-density urban centres outperformed megacities on satisfaction and retention",
+  "Customers saw little value in existing loyalty schemes",
+  "Current analytics were largely descriptive, leaving room for predictive retention tools",
 ];
 
 export function CaseStudy() {
@@ -25,7 +25,7 @@ export function CaseStudy() {
     <section id="case-study" className="py-32 section-alt">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <Reveal><SectionLabel>Real Work · MSc Capstone</SectionLabel></Reveal>
+          <Reveal><SectionLabel>MSc Business Project · Team of Six</SectionLabel></Reveal>
           <Reveal delay={0.1}>
             <h2 className="mt-6 text-4xl md:text-5xl font-bold leading-tight">
               Enterprise Mobility: <span className="gold-text">Data-Driven Customer Retention Strategy</span>
@@ -33,8 +33,8 @@ export function CaseStudy() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-5 text-muted-foreground">
-              Distinction-grade MSc capstone project completed for Enterprise Mobility (Enterprise Rent-A-Car), modelling
-              churn drivers across 2,495 surveyed customers across the UK.
+              Distinction-level MSc business project built on an Enterprise Mobility (Enterprise Rent-A-Car) case study, analysing
+              churn and loyalty drivers from secondary survey data on 2,495 UK respondents aged 18–64.
             </p>
           </Reveal>
         </div>
