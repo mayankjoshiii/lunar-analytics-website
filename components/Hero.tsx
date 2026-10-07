@@ -8,8 +8,8 @@ const headline = ["Your", "business", "has", "data.", "We", "turn", "it", "into"
 const stats = [
   { v: "~4", l: "Years Analytics Experience" },
   { v: "0.85", l: "Churn Model AUC" },
-  { v: "£0", l: "Wasted Spend" },
-  { v: "30-Day", l: "ROI Window" },
+  { v: "MSc", l: "Distinction, Analytics" },
+  { v: "30-Day", l: "First Insight Target" },
 ];
 
 export function Hero() {
