@@ -39,7 +39,7 @@ export function Hero() {
           <span className="h-px w-8 bg-gold/70" aria-hidden />
         </p>
 
-        <h1 id="hero-title" className="mx-auto mt-8 max-w-[14ch] font-display text-[clamp(2.75rem,5.6vw,5.4rem)] leading-[1.02] tracking-[-0.05em] md:max-w-none">
+        <h1 id="hero-title" className="mx-auto mt-8 max-w-[14ch] font-display text-[clamp(2.75rem,5.6vw,5.4rem)] leading-[1.02] font-bold tracking-[-0.035em] md:max-w-none">
           <span className="block">
             <TextAnimation immediate delay={0.15}>{hero.titleTop}</TextAnimation>
           </span>

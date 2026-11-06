@@ -82,7 +82,7 @@ export function SectionHead({
       <Reveal>
         <Eyebrow className={center ? "justify-center" : ""}>{eyebrow}</Eyebrow>
       </Reveal>
-      <h2 id={id} className="mt-6 font-display text-[clamp(2.1rem,4.4vw,3.75rem)] leading-[1.06] tracking-[-0.04em]">
+      <h2 id={id} className="mt-6 font-display text-[clamp(2.1rem,4.4vw,3.75rem)] leading-[1.06] tracking-[-0.03em]">
         <TextAnimation delay={0.1}>{titleTop}</TextAnimation>
         {titleAccent && (
           <>

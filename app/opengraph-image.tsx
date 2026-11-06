@@ -10,24 +10,25 @@ const lines = ["Your business has data.", "Let's turn it into decisions."];
 const tagline = "Fractional data analytics for UK small businesses";
 const domain = "lunaranalytics.co.uk";
 
-async function loadFont(weight: 400 | 600) {
+async function loadFont(family: string) {
   const text = encodeURIComponent([...lines, "Lunar Analytics", tagline, domain].join(""));
-  const css = await (await fetch(`https://fonts.googleapis.com/css2?family=Geist:wght@${weight}&text=${text}`)).text();
+  const css = await (await fetch(`https://fonts.googleapis.com/css2?family=${family}&text=${text}`)).text();
   const src = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/);
   if (!src) throw new Error("font not found");
   return (await fetch(src[1])).arrayBuffer();
 }
 
 export default async function OpengraphImage() {
-  const fonts = await Promise.all([loadFont(400), loadFont(600)])
-    .then(([regular, semibold]) => [
-      { name: "Geist", data: regular, style: "normal" as const, weight: 400 as const },
-      { name: "Geist", data: semibold, style: "normal" as const, weight: 600 as const },
+  const fonts = await Promise.all([loadFont("Bricolage+Grotesque:opsz,wght@96,700"), loadFont("Geist:wght@400")])
+    .then(([headline, body]) => [
+      { name: "Bricolage Grotesque", data: headline, style: "normal" as const, weight: 700 as const },
+      { name: "Geist", data: body, style: "normal" as const, weight: 400 as const },
     ])
     .catch((err) => {
       console.warn("Open Graph image: using the default font", err);
       return undefined;
     });
+  const display = fonts ? "Bricolage Grotesque" : "sans-serif";
   const sans = fonts ? "Geist" : "sans-serif";
 
   return new ImageResponse(
@@ -47,9 +48,9 @@ export default async function OpengraphImage() {
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img width={52} height={52} src={`data:image/svg+xml;utf8,${encodeURIComponent(moon)}`} alt="" />
-          <span style={{ fontFamily: sans, fontSize: 36, fontWeight: 600, letterSpacing: -1 }}>Lunar Analytics</span>
+          <span style={{ fontFamily: display, fontSize: 36, fontWeight: 700, letterSpacing: -1 }}>Lunar Analytics</span>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", fontFamily: sans, fontSize: 76, fontWeight: 600, lineHeight: 1.06, letterSpacing: -3 }}>
+        <div style={{ display: "flex", flexDirection: "column", fontFamily: display, fontSize: 78, fontWeight: 700, lineHeight: 1.06, letterSpacing: -2.5 }}>
           <span>{lines[0]}</span>
           <span style={{ color: "#F5C842" }}>{lines[1]}</span>
         </div>

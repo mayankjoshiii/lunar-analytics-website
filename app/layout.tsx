@@ -1,10 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import { MotionConfig } from "motion/react";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { site } from "@/content/site";
 import "lenis/dist/lenis.css";
 import "./globals.css";
+
+const display = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  axes: ["opsz"],
+});
 
 const sans = Geist({
   variable: "--font-geist",
@@ -58,7 +64,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`dark ${sans.variable} ${mono.variable} antialiased`}>
+    <html lang="en-GB" className={`dark ${display.variable} ${sans.variable} ${mono.variable} antialiased`}>
       <body>
         <MotionConfig reducedMotion="user">
           <SmoothScroll>{children}</SmoothScroll>
