@@ -27,11 +27,14 @@ const TextAnimation = ({
   delay = 0,
   divideBy = "word",
   wordClassName,
+  immediate = false,
 }: {
   children: React.ReactNode;
   delay?: number;
   divideBy?: "word" | "letter";
   wordClassName?: string;
+  /** Animate with CSS on first paint instead of waiting for hydration */
+  immediate?: boolean;
 }) => {
   if (typeof children !== "string") {
     if (typeof children === "number" || typeof children === "boolean") {
@@ -46,6 +49,29 @@ const TextAnimation = ({
   const parts =
     divideBy === "letter" ? text.split("") : text.split(" ");
   const stagger = divideBy === "letter" ? 0.02 : 0.05;
+
+  if (immediate) {
+    return (
+      <span style={{ display: "inline-block" }}>
+        {parts.map((part, i) => (
+          <React.Fragment key={i}>
+            <span
+              className="relative -mb-[0.14em] inline-block overflow-hidden pb-[0.14em]"
+              style={{ verticalAlign: "top" }}
+            >
+              <span
+                className={`word-rise inline-block ${wordClassName ?? ""}`}
+                style={{ animationDelay: `${delay + i * stagger}s` }}
+              >
+                {divideBy === "letter" && part === " " ? " " : part}
+              </span>
+            </span>
+            {divideBy === "word" && i < parts.length - 1 && " "}
+          </React.Fragment>
+        ))}
+      </span>
+    );
+  }
 
   return (
     <motion.span

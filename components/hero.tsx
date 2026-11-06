@@ -8,15 +8,10 @@ import { LiquidMetalButton } from "@/components/ui/liquid-metal";
 import TextAnimation from "@/components/ui/staggerText";
 import { HeroDashboard } from "./hero-dashboard";
 import { LiquidMoon } from "./liquid-moon";
-import { ease } from "./reveal";
 import { useScrollTo } from "./smooth-scroll";
 
 function enter(i: number) {
-  return {
-    initial: { opacity: 0, y: 24 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.7, delay: 0.1 + i * 0.1, ease },
-  };
+  return { animationDelay: `${0.1 + i * 0.1}s` };
 }
 
 export function Hero() {
@@ -38,28 +33,28 @@ export function Hero() {
       />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 text-center md:px-8">
-        <motion.p {...enter(0)} className="flex items-center justify-center gap-3 font-mono text-[11px] tracking-[0.22em] text-gold uppercase">
+        <p style={enter(0)} className="fade-up flex items-center justify-center gap-3 font-mono text-[11px] tracking-[0.22em] text-gold uppercase">
           <span className="h-px w-8 bg-gold/70" aria-hidden />
           {hero.eyebrow}
           <span className="h-px w-8 bg-gold/70" aria-hidden />
-        </motion.p>
+        </p>
 
         <h1 id="hero-title" className="mx-auto mt-8 max-w-[14ch] font-display text-[clamp(2.75rem,5.6vw,5.4rem)] leading-[1.02] tracking-[-0.05em] md:max-w-none">
           <span className="block">
-            <TextAnimation delay={0.15}>{hero.titleTop}</TextAnimation>
+            <TextAnimation immediate delay={0.15}>{hero.titleTop}</TextAnimation>
           </span>
           <span className="block">
-            <TextAnimation delay={0.45} wordClassName="text-gold-gradient pb-[0.08em]">
+            <TextAnimation immediate delay={0.45} wordClassName="text-gold-gradient pb-[0.08em]">
               {hero.titleBottom}
             </TextAnimation>
           </span>
         </h1>
 
-        <motion.p {...enter(6)} className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+        <p style={enter(6)} className="fade-up mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
           {hero.sub}
-        </motion.p>
+        </p>
 
-        <motion.div {...enter(7)} className="mt-11 flex flex-wrap items-center justify-center gap-4">
+        <div style={enter(7)} className="fade-up mt-11 flex flex-wrap items-center justify-center gap-4">
           <LiquidMetalButton
             onClick={() => scrollTo("contact")}
             icon={<CalendarDays className="size-[18px]" aria-hidden />}
@@ -78,18 +73,16 @@ export function Hero() {
           >
             {hero.secondary}
           </a>
-        </motion.div>
+        </div>
 
-        <motion.p {...enter(8)} className="mt-6 flex items-start justify-center gap-2.5 text-sm text-muted-foreground">
+        <p style={enter(8)} className="fade-up mt-6 flex items-start justify-center gap-2.5 text-sm text-muted-foreground">
           <span className="pulse-dot mt-1.5 size-2 shrink-0 rounded-full bg-mint" aria-hidden />
           <span className="text-balance">
             <span className="text-foreground/90">{hero.status}.</span> {hero.micro}
           </span>
-        </motion.p>
+        </p>
 
-        <motion.ul
-          {...enter(9)}
-          className="mt-10 flex flex-wrap justify-center gap-x-7 gap-y-2.5 font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase"
+        <ul style={enter(9)} className="fade-up mt-10 flex flex-wrap justify-center gap-x-7 gap-y-2.5 font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase"
         >
           {hero.creds.map((c) => (
             <li key={c} className="flex items-center gap-2">
@@ -97,7 +90,7 @@ export function Hero() {
               {c}
             </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
 
       <div className="relative mx-auto mt-28 max-w-6xl px-4 md:mt-36 md:px-8" style={{ perspective: 1600 }}>
