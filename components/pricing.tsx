@@ -4,6 +4,7 @@ import { useId, useState } from "react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import { Check } from "lucide-react";
 import { pricing } from "@/content/site";
+import { BorderBeam } from "@/components/ui/border-beam";
 import { Corners, Reveal, SectionHead, Stagger, staggerChild } from "./reveal";
 import { useScrollTo } from "./smooth-scroll";
 
@@ -27,7 +28,7 @@ export function Pricing() {
   const dir = annual ? 1 : -1;
 
   return (
-    <section id="pricing" aria-labelledby="pricing-title" className="relative py-28 md:py-36">
+    <section id="pricing" aria-labelledby="pricing-title" className="relative overflow-x-clip py-28 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <SectionHead
           id="pricing-title"
@@ -86,15 +87,9 @@ export function Pricing() {
             const save = t.monthly * 12 - t.annual;
             return (
               <motion.div key={t.name} variants={staggerChild} className="relative">
-                {t.featured && (
-                  <div aria-hidden className="absolute -inset-px overflow-hidden rounded-[23px]">
-                    <div
-                      className="spin-slow absolute inset-[-60%]"
-                      style={{ background: "conic-gradient(from 0deg, transparent 0deg, #F5C842 70deg, transparent 150deg)" }}
-                    />
-                  </div>
-                )}
+                {t.featured && <div aria-hidden className="absolute -inset-6 -z-10 rounded-[40px] bg-gold/[0.07] blur-2xl" />}
                 <div className={`card relative flex h-full flex-col p-7 sm:p-8 ${t.featured ? "bg-surface" : ""}`}>
+                  {t.featured && <BorderBeam size={190} duration={9} colorFrom="#f9dc85" colorTo="#f5c842" borderWidth={1.5} />}
                   <Corners className={t.featured ? "border-gold/60" : undefined} />
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="font-display text-2xl">{t.name}</h3>

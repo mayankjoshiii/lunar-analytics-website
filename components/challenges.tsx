@@ -2,8 +2,9 @@
 
 import { useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { challenges } from "@/content/site";
+import { Link001 } from "@/components/ui/skiper-ui/skiper40";
 import { Corners, Reveal, SectionHead, ease } from "./reveal";
 
 export function Challenges() {
@@ -87,15 +88,9 @@ export function Challenges() {
                 <h3 className="mt-6 font-display text-2xl leading-tight md:text-[2rem]">{item.title}</h3>
                 <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">{item.text}</p>
                 {item.demo && (
-                  <a
-                    href={item.demo.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-7 inline-flex items-center gap-1.5 text-sm font-medium text-gold transition-colors hover:text-gold-soft"
-                  >
+                  <Link001 href={item.demo.href} className="mt-7 inline-flex text-sm font-medium text-gold">
                     {item.demo.label}
-                    <ArrowUpRight className="size-4" aria-hidden />
-                  </a>
+                  </Link001>
                 )}
               </div>
               <div className="rounded-2xl bg-white/[0.025] p-6 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.06)]">

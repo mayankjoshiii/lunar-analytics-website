@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll } from "motion/react";
 import { processSteps } from "@/content/site";
+import { LightLines } from "@/components/ui/light-lines";
 import { SectionHead, ease } from "./reveal";
 
 export function Process() {
@@ -10,7 +11,18 @@ export function Process() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 80%", "end 55%"] });
 
   return (
-    <section id="process" aria-labelledby="process-title" className="relative border-y border-line bg-surface/30 py-28 md:py-36">
+    <section id="process" aria-labelledby="process-title" className="relative isolate overflow-hidden border-y border-line bg-surface/30 py-28 md:py-36">
+      <div aria-hidden className="absolute inset-0 -z-10 [mask-image:linear-gradient(180deg,transparent,black_25%,black_75%,transparent)]">
+        <LightLines
+          gradientFrom="transparent"
+          gradientTo="transparent"
+          lineColor="#ffffff"
+          lightColor="#f5c842"
+          linesOpacity={0.035}
+          lightsOpacity={0.45}
+          speedMultiplier={0.5}
+        />
+      </div>
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <SectionHead
           id="process-title"

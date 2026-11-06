@@ -1,9 +1,14 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
 import { about, site } from "@/content/site";
+import { HighlightGrid } from "@/components/ui/highlight-grid";
+import { Link001 } from "@/components/ui/skiper-ui/skiper40";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { Corners, Reveal, SectionHead } from "./reveal";
+
+const skillRows = [about.skills.slice(0, 3), about.skills.slice(3, 6), about.skills.slice(6, 8), about.skills.slice(8)].map(
+  (row) => row.map((label) => ({ label })),
+);
 
 export function About() {
   return (
@@ -20,13 +25,20 @@ export function About() {
             <p className="mt-6 text-lg font-medium text-gold/90">{about.nameNote}</p>
           </Reveal>
           <Reveal delay={0.35}>
-            <ul className="mt-8 flex flex-wrap gap-2">
+            <p className="mt-10 font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase">Toolkit</p>
+            <ul className="sr-only">
               {about.skills.map((s) => (
-                <li key={s} className="rounded-full bg-gold/[0.06] px-3 py-1.5 text-xs text-gold shadow-[inset_0_0_0_1px_rgb(245_200_66/0.25)]">
-                  {s}
-                </li>
+                <li key={s}>{s}</li>
               ))}
             </ul>
+            <div aria-hidden>
+              <HighlightGrid
+                className="mt-4"
+                rows={skillRows}
+                colors={["#f5c842", "#f9dc85", "#e0b232"]}
+                transitionDuration={300}
+              />
+            </div>
           </Reveal>
           <Reveal delay={0.4}>
             <ol className="relative mt-12">
@@ -105,15 +117,11 @@ export function About() {
                   GitHub
                 </a>
               </div>
-              <a
-                href={site.linkedinCompany}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 flex items-center justify-center gap-1.5 text-sm text-gold transition-colors hover:text-gold-soft"
-              >
-                Follow Lunar Analytics on LinkedIn
-                <ArrowUpRight className="size-4" aria-hidden />
-              </a>
+              <div className="mt-5 flex justify-center">
+                <Link001 href={site.linkedinCompany} className="text-sm text-gold">
+                  Follow Lunar Analytics on LinkedIn
+                </Link001>
+              </div>
             </aside>
           </Reveal>
         </div>

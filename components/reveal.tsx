@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "motion/react";
+import TextAnimation from "@/components/ui/staggerText";
 
 export const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -81,17 +82,17 @@ export function SectionHead({
       <Reveal>
         <Eyebrow className={center ? "justify-center" : ""}>{eyebrow}</Eyebrow>
       </Reveal>
-      <Reveal delay={0.1}>
-        <h2 id={id} className="mt-6 font-display text-[clamp(2.1rem,4.4vw,3.75rem)] leading-[1.06] tracking-[-0.04em]">
-          {titleTop}
-          {titleAccent && (
-            <>
-              {" "}
-              <span className="text-gold-gradient inline-block pb-[0.1em]">{titleAccent}</span>
-            </>
-          )}
-        </h2>
-      </Reveal>
+      <h2 id={id} className="mt-6 font-display text-[clamp(2.1rem,4.4vw,3.75rem)] leading-[1.06] tracking-[-0.04em]">
+        <TextAnimation delay={0.1}>{titleTop}</TextAnimation>
+        {titleAccent && (
+          <>
+            {" "}
+            <TextAnimation delay={0.1 + titleTop.split(" ").length * 0.05} wordClassName="text-gold-gradient pb-[0.08em]">
+              {titleAccent}
+            </TextAnimation>
+          </>
+        )}
+      </h2>
       {intro && (
         <Reveal delay={0.2}>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{intro}</p>

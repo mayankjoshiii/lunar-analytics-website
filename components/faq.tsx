@@ -4,6 +4,7 @@ import { useId, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Plus } from "lucide-react";
 import { faqs, site } from "@/content/site";
+import { Link003 } from "@/components/ui/skiper-ui/skiper40";
 import { Reveal, SectionHead, ease } from "./reveal";
 
 export function Faq() {
@@ -16,13 +17,10 @@ export function Faq() {
         <div>
           <SectionHead id="faq-title" eyebrow="Questions" titleTop="Before you" titleAccent="ask." />
           <Reveal delay={0.2}>
-            <p className="mt-6 text-muted-foreground">
-              Something else on your mind? Email{" "}
-              <a href={`mailto:${site.email}`} className="text-gold transition-colors hover:text-gold-soft">
-                {site.email}
-              </a>
-              .
-            </p>
+            <p className="mt-6 text-muted-foreground">Something else on your mind? Email me.</p>
+            <Link003 href={`mailto:${site.email}`} className="mt-2 inline-flex text-gold">
+              {site.email}
+            </Link003>
           </Reveal>
         </div>
 

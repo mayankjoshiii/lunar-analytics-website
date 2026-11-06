@@ -56,6 +56,7 @@ export default function Home() {
         Skip to content
       </a>
       <NightSky />
+      <div aria-hidden className="grain pointer-events-none fixed inset-0 z-[60] opacity-[0.035]" />
       <IslandNav />
       <main id="main">
         <Hero />

@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { demos, msc, site, work, type DataKind } from "@/content/site";
+import { Link001 } from "@/components/ui/skiper-ui/skiper40";
 import { CountingNumber } from "./counting-number";
 import { GithubIcon } from "./icons";
 import { Corners, Reveal, SectionHead, Stagger, staggerChild } from "./reveal";
@@ -107,13 +108,11 @@ export function Work() {
           ))}
         </Stagger>
 
-        <Reveal>
-          <p className="mt-10 text-center text-sm text-muted-foreground">
-            Everything is public on{" "}
-            <a href={site.github} target="_blank" rel="noreferrer" className="text-gold transition-colors hover:text-gold-soft">
-              github.com/mayankjoshiii
-            </a>
-          </p>
+        <Reveal className="mt-10 flex flex-wrap items-center justify-center gap-x-2 text-sm text-muted-foreground">
+          Everything is public on
+          <Link001 href={site.github} className="text-gold">
+            github.com/mayankjoshiii
+          </Link001>
         </Reveal>
       </div>
     </section>

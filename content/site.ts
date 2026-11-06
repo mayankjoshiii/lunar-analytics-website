@@ -63,7 +63,9 @@ export const heroDashboard = {
     { label: "Revenue", prefix: "£", value: 4.92, decimals: 2, suffix: "M", delta: "-1.0% vs budget", tone: "down" as const },
     { label: "Gross margin", prefix: "", value: 41.9, decimals: 1, suffix: "%", delta: "£2.06M profit", tone: "flat" as const },
     { label: "EBITDA margin", prefix: "", value: 17.6, decimals: 1, suffix: "%", delta: "£867K", tone: "flat" as const },
+    { label: "Revenue growth", prefix: "+", value: 5.5, decimals: 1, suffix: "%", delta: "Jan to Apr", tone: "up" as const },
   ],
+  note: "4 regions · 32 rows of sample data",
   months: ["Jan", "Feb", "Mar", "Apr"],
   actual: [1190, 1219, 1255, 1255],
   budget: [1202, 1232, 1258, 1276],
@@ -72,7 +74,6 @@ export const heroDashboard = {
     { label: "Clothing", share: 18.9 },
     { label: "Food & Bev", share: 14.2 },
   ],
-  growth: "+5.5% Jan to Apr",
 };
 
 export const tools = ["Excel & VBA", "SQL", "Python", "Power BI", "Tableau", "Looker Studio", "Google Sheets"];
@@ -444,4 +445,11 @@ export const contact = {
   success: "Thanks, I'll be in touch.",
   successSub: "Expect an email from hello@lunaranalytics.co.uk within 24 hours.",
   calendarIcon: Calendar,
+};
+
+export const footer = {
+  eyebrow: "Get in touch",
+  title: "Have data nobody has time to look at?",
+  sub: "Email me and I'll reply within 24 hours.",
+  tagline: "Fractional data analytics for UK small and medium businesses. Based in Swansea, working across the UK.",
 };

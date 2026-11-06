@@ -58,7 +58,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`${sans.variable} ${mono.variable} antialiased`}>
+    <html lang="en-GB" className={`dark ${sans.variable} ${mono.variable} antialiased`}>
       <body>
         <MotionConfig reducedMotion="user">
           <SmoothScroll>{children}</SmoothScroll>

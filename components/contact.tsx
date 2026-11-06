@@ -4,6 +4,8 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Check, Loader2, Mail, MapPin, Send } from "lucide-react";
 import { contact, site } from "@/content/site";
+import { BorderBeam } from "@/components/ui/border-beam";
+import { Link001, Link003 } from "@/components/ui/skiper-ui/skiper40";
 import { LinkedinIcon } from "./icons";
 import { Corners, Reveal, SectionHead, ease } from "./reveal";
 
@@ -57,17 +59,13 @@ export function Contact() {
 
           <Reveal delay={0.3}>
             <ul className="mt-10 space-y-3 border-t border-line pt-8 text-[15px]">
-              <li>
-                <a href={`mailto:${site.email}`} className="flex items-center gap-3 transition-colors hover:text-gold">
-                  <Mail className="size-4 text-gold" aria-hidden />
-                  {site.email}
-                </a>
+              <li className="flex items-center gap-3">
+                <Mail className="size-4 shrink-0 text-gold" aria-hidden />
+                <Link003 href={`mailto:${site.email}`}>{site.email}</Link003>
               </li>
-              <li>
-                <a href={site.linkedinCompany} target="_blank" rel="noreferrer" className="flex items-center gap-3 transition-colors hover:text-gold">
-                  <LinkedinIcon className="size-4 text-gold" />
-                  Lunar Analytics on LinkedIn
-                </a>
+              <li className="flex items-center gap-3">
+                <LinkedinIcon className="size-4 shrink-0 text-gold" />
+                <Link001 href={site.linkedinCompany}>Lunar Analytics on LinkedIn</Link001>
               </li>
               <li className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="size-4 text-gold" aria-hidden />
@@ -79,6 +77,7 @@ export function Contact() {
 
         <Reveal delay={0.15}>
           <div className="card relative overflow-hidden p-7 sm:p-10">
+            <BorderBeam size={240} duration={12} colorFrom="#f9dc85" colorTo="#f5c842" borderWidth={1.5} />
             <Corners className="border-gold/45" />
             <AnimatePresence mode="wait" initial={false}>
               {state === "sent" ? (
