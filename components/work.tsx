@@ -24,7 +24,7 @@ export function Work() {
             <Corners className="border-gold/45" />
             <div>
               <p className="font-mono text-[10px] tracking-[0.16em] text-gold uppercase">{msc.label}</p>
-              <h3 className="mt-4 font-display text-3xl leading-tight md:text-[2.6rem]">{msc.title}</h3>
+              <h3 className="mt-4 font-display text-2xl leading-tight md:text-[2.1rem]">{msc.title}</h3>
               <p className="mt-5 leading-relaxed text-muted-foreground">{msc.text}</p>
               <p className="mt-4 leading-relaxed text-foreground/85">{msc.role}</p>
               <ul className="mt-6 space-y-3">
@@ -39,7 +39,7 @@ export function Work() {
             <div className="grid grid-cols-2 gap-3 self-center">
               {msc.stats.map((s) => (
                 <div key={s.label} className="rounded-2xl bg-white/[0.03] p-5 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.06)]">
-                  <p className="font-display text-4xl text-gold">
+                  <p className="font-display text-3xl text-gold sm:text-4xl">
                     <CountingNumber value={s.value} decimals={s.decimals} suffix={s.suffix} />
                   </p>
                   <p className="mt-2 font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">{s.label}</p>
@@ -64,13 +64,13 @@ export function Work() {
                   {p.dataLabel}
                 </span>
               </div>
-              <h3 className="mt-4 font-display text-[1.65rem] leading-snug">{p.title}</h3>
+              <h3 className="mt-4 font-display text-xl leading-snug">{p.title}</h3>
               <p className="mt-2.5 flex-1 leading-relaxed text-muted-foreground">{p.desc}</p>
               {p.metrics && (
                 <div className="mt-5 grid grid-cols-3 gap-2 rounded-2xl bg-black/25 p-3 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.05)]">
                   {p.metrics.map((m) => (
                     <div key={m.label} className="text-center">
-                      <p className="font-display text-xl text-gold tabular-nums">{m.value}</p>
+                      <p className="font-display text-lg text-gold tabular-nums">{m.value}</p>
                       <p className="mt-0.5 font-mono text-[9px] tracking-[0.1em] text-muted-foreground uppercase">{m.label}</p>
                     </div>
                   ))}

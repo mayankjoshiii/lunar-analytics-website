@@ -17,7 +17,7 @@ export function About() {
             </Reveal>
           ))}
           <Reveal delay={0.3}>
-            <p className="mt-6 font-display text-2xl text-gold/90 italic">{about.nameNote}</p>
+            <p className="mt-6 text-lg font-medium text-gold/90">{about.nameNote}</p>
           </Reveal>
           <Reveal delay={0.35}>
             <ul className="mt-8 flex flex-wrap gap-2">
@@ -58,11 +58,11 @@ export function About() {
                     style={{ background: "conic-gradient(from 0deg, #F5C842, transparent 70%)" }}
                   />
                   <div className="absolute inset-[3px] flex items-center justify-center rounded-full bg-surface">
-                    <span className="text-gold-gradient font-display text-3xl">MJ</span>
+                    <span className="text-gold-gradient font-display text-2xl">MJ</span>
                   </div>
                 </div>
                 <div>
-                  <p className="font-display text-2xl">{site.founder}</p>
+                  <p className="font-display text-xl">{site.founder}</p>
                   <p className="text-sm text-muted-foreground">{about.role}</p>
                   <p className="mt-2 flex items-center gap-2 text-xs text-mint">
                     <span className="pulse-dot size-2 rounded-full bg-mint" aria-hidden />

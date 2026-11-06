@@ -16,7 +16,7 @@ export function ToolsMarquee() {
             {[0, 1].map((copy) => (
               <div key={copy} className="flex items-center">
                 {row.map((t, i) => (
-                  <span key={`${copy}-${i}`} className="flex items-center font-display text-2xl whitespace-nowrap text-foreground/85 italic md:text-[1.75rem]">
+                  <span key={`${copy}-${i}`} className="flex items-center font-display text-xl font-medium whitespace-nowrap text-foreground/75 md:text-2xl">
                     {t}
                     <span className="mx-8 inline-block size-1.5 rotate-45 bg-gold/70" />
                   </span>

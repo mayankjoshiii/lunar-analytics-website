@@ -99,7 +99,7 @@ export function Contact() {
                   >
                     <Check className="size-8" strokeWidth={2.5} aria-hidden />
                   </motion.span>
-                  <p className="mt-6 font-display text-3xl">{contact.success}</p>
+                  <p className="mt-6 font-display text-2xl">{contact.success}</p>
                   <p className="mt-2 max-w-sm text-muted-foreground">{contact.successSub}</p>
                 </motion.div>
               ) : (

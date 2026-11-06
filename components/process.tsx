@@ -43,7 +43,7 @@ export function Process() {
                 <p className="pt-1 font-mono text-[10px] tracking-[0.18em] text-gold uppercase lg:mt-6 lg:pt-0">
                   Step 0{i + 1} · {s.when}
                 </p>
-                <h3 className="mt-2 font-display text-[1.75rem] leading-tight">{s.title}</h3>
+                <h3 className="mt-2 font-display text-[1.4rem] leading-tight">{s.title}</h3>
                 <p className="mt-2 leading-relaxed text-muted-foreground lg:mx-auto lg:max-w-[17rem]">{s.text}</p>
               </motion.li>
             ))}

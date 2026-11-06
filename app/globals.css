@@ -30,7 +30,7 @@
   --color-mint: var(--mint);
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-display: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-display: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
@@ -51,6 +51,10 @@
   h2,
   h3 {
     text-wrap: balance;
+  }
+  .font-display {
+    font-weight: 600;
+    letter-spacing: -0.03em;
   }
   p {
     text-wrap: pretty;

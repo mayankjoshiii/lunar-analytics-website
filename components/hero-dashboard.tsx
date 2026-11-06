@@ -53,9 +53,9 @@ export function HeroDashboard() {
 
       <div className="mt-5 grid grid-cols-3 gap-2.5">
         {d.kpis.map((k, i) => (
-          <div key={k.label} className="rounded-2xl bg-white/[0.03] p-3 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.06)]">
+          <div key={k.label} className="rounded-2xl bg-white/[0.03] p-2.5 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.06)] sm:p-3">
             <p className="font-mono text-[9px] tracking-[0.13em] text-muted-foreground uppercase">{k.label}</p>
-            <p className="mt-2 font-display text-[1.65rem] leading-none sm:text-[1.85rem]">
+            <p className="mt-2 font-display text-[1.2rem] leading-none sm:text-2xl">
               <CountingNumber value={k.value} decimals={k.decimals} prefix={k.prefix} suffix={k.suffix} delay={0.75 + i * 0.12} />
             </p>
             <p className={`mt-1.5 text-[10.5px] leading-tight ${k.tone === "down" ? "text-rose" : "text-muted-foreground"}`}>{k.delta}</p>

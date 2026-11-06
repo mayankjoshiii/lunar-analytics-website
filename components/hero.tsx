@@ -36,11 +36,11 @@ export function Hero() {
             {hero.eyebrow}
           </motion.p>
 
-          <h1 id="hero-title" className="mt-7 font-display text-[clamp(3rem,7.2vw,6.25rem)] leading-[0.96] tracking-[-0.015em]">
+          <h1 id="hero-title" className="mt-7 font-display text-[clamp(2.75rem,6.2vw,5.25rem)] leading-[1.02] tracking-[-0.045em]">
             <motion.span {...enter(1)} className="block">
               {hero.titleTop}
             </motion.span>
-            <motion.span {...enter(2)} className="text-gold-gradient block pb-2 italic">
+            <motion.span {...enter(2)} className="text-gold-gradient block pb-2">
               {hero.titleBottom}
             </motion.span>
           </h1>

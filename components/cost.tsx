@@ -50,7 +50,7 @@ export function Cost() {
                           </span>
                         )}
                       </span>
-                      <span className={`font-display text-2xl sm:text-[1.7rem] ${valueTone[b.kind]}`}>
+                      <span className={`font-display text-xl sm:text-2xl ${valueTone[b.kind]}`}>
                         <CountingNumber value={b.value} prefix="£" delay={0.1 * i} />
                       </span>
                     </div>

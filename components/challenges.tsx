@@ -84,7 +84,7 @@ export function Challenges() {
                 <span className="flex size-12 items-center justify-center rounded-2xl bg-gold/10 text-gold shadow-[inset_0_0_0_1px_rgb(245_200_66/0.22)]">
                   <item.icon className="size-6" aria-hidden />
                 </span>
-                <h3 className="mt-6 font-display text-3xl leading-tight md:text-[2.5rem]">{item.title}</h3>
+                <h3 className="mt-6 font-display text-2xl leading-tight md:text-[2rem]">{item.title}</h3>
                 <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">{item.text}</p>
                 {item.demo && (
                   <a

@@ -97,7 +97,7 @@ export function Pricing() {
                 <div className={`card relative flex h-full flex-col p-7 sm:p-8 ${t.featured ? "bg-surface" : ""}`}>
                   <Corners className={t.featured ? "border-gold/60" : undefined} />
                   <div className="flex items-center justify-between gap-3">
-                    <h3 className="font-display text-3xl">{t.name}</h3>
+                    <h3 className="font-display text-2xl">{t.name}</h3>
                     {t.featured && (
                       <span className="rounded-full bg-gold px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.14em] text-background uppercase">
                         Recommended
@@ -107,7 +107,7 @@ export function Pricing() {
                   <p className="mt-2 text-sm text-muted-foreground">{t.desc}</p>
 
                   <div className="mt-7 flex items-end gap-1.5">
-                    <span className="relative h-[3.4rem] overflow-hidden font-display text-[3.25rem] leading-[1.05] tabular-nums">
+                    <span className="relative h-[3.4rem] overflow-hidden font-display text-[3rem] leading-[1.12] tracking-[-0.04em] tabular-nums">
                       <AnimatePresence mode="popLayout" initial={false} custom={dir}>
                         <motion.span
                           key={price}

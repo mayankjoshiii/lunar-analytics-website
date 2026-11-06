@@ -9,7 +9,7 @@ export function Footer() {
           <div className="max-w-sm">
             <a href="#top" className="flex items-center gap-2.5">
               <MoonMark className="size-7" />
-              <span className="font-display text-2xl">{site.name}</span>
+              <span className="font-display text-xl">{site.name}</span>
             </a>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Fractional data analytics for UK small and medium businesses. Based in Swansea, working across the UK.
