@@ -4,10 +4,18 @@ import nodemailer from 'nodemailer'
 // Runs on the Node.js runtime so Nodemailer (net/tls) works.
 export const runtime = 'nodejs'
 
+const entities: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }
+const escape = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (c) => entities[c])
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, company, service, message } = body
+    const { name, email, company, service, message, company_site } = body
+
+    // Hidden honeypot field: people never see it, form-filling bots usually do.
+    if (company_site) {
+      return NextResponse.json({ success: true })
+    }
 
     if (!name || !email) {
       return NextResponse.json(
@@ -53,12 +61,12 @@ export async function POST(request: NextRequest) {
       html:
         `<h2 style="font-family:sans-serif">New Lunar Analytics enquiry</h2>` +
         `<table style="font-family:sans-serif;border-collapse:collapse">` +
-        `<tr><td style="padding:4px 12px 4px 0"><strong>Name</strong></td><td>${name}</td></tr>` +
-        `<tr><td style="padding:4px 12px 4px 0"><strong>Email</strong></td><td>${email}</td></tr>` +
-        `<tr><td style="padding:4px 12px 4px 0"><strong>Company</strong></td><td>${company || '—'}</td></tr>` +
-        `<tr><td style="padding:4px 12px 4px 0"><strong>Service</strong></td><td>${service || '—'}</td></tr>` +
+        `<tr><td style="padding:4px 12px 4px 0"><strong>Name</strong></td><td>${escape(name)}</td></tr>` +
+        `<tr><td style="padding:4px 12px 4px 0"><strong>Email</strong></td><td>${escape(email)}</td></tr>` +
+        `<tr><td style="padding:4px 12px 4px 0"><strong>Company</strong></td><td>${escape(company || '—')}</td></tr>` +
+        `<tr><td style="padding:4px 12px 4px 0"><strong>Service</strong></td><td>${escape(service || '—')}</td></tr>` +
         `</table>` +
-        `<p style="font-family:sans-serif"><strong>Message</strong><br>${(message || '—').replace(/\n/g, '<br>')}</p>`,
+        `<p style="font-family:sans-serif"><strong>Message</strong><br>${escape(message || '—').replace(/\n/g, '<br>')}</p>`,
     })
 
     return NextResponse.json({ success: true, message: "Thanks — we'll be in touch." })
